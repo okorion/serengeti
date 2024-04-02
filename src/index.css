@@ -93,6 +93,10 @@ button:focus-visible {
   text-shadow: 0 0 10px black;
 }
 
+.text-shadow-black-light {
+  text-shadow: 0 0 5px black;
+}
+
 .text-shadow-red {
   text-shadow: 0 0 5px #621111;
 }
