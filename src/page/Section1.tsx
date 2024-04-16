@@ -21,18 +21,22 @@ const Section1 = () => {
 
   return (
     <Container id="section1">
+      <Spacing size={100} />
       <ScrollSlideText text={title} style={titleStyle} direction="up" />
       <div ref={sectionRef}></div>
-      {splittedAboutMe.map((line, index) => (
-        <ScrollSlideText
-          key={index}
-          text={line}
-          style={aboutMeLineStyle}
-          direction="left"
-          duration={ABOUTME_ANIMATION_DURATION * ((index + 1) / aboutMeLineCount)}
-        />
-      ))}
-      <Spacing size={1000} />
+      <Spacing size={50} />
+      <div className="text-shadow-black-light">
+        {splittedAboutMe.map((line, index) => (
+          <ScrollSlideText
+            key={index}
+            text={line}
+            style={aboutMeLineStyle}
+            direction="left"
+            duration={ABOUTME_ANIMATION_DURATION * ((index + 1) / aboutMeLineCount)}
+          />
+        ))}
+      </div>
+      <Spacing size={400} />
     </Container>
   );
 };
@@ -60,7 +64,7 @@ const titleStyle = {
 const aboutMeLineStyle = {
   fontFamily: 'Arial, sans-serif',
   paddingLeft: '20px',
-  fontSize: '24px',
+  fontSize: '30px',
   color: '#fffdd0',
   fontWeight: 'bold',
   WebkitTextStroke: '0.5px black ',
