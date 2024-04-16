@@ -1,7 +1,6 @@
 import Spacing from '@/components/Spacing';
 import { USER_PROFILE } from '@/constants/useProfile';
 import ScrollSlideText from '@/components/ScrollSlideText';
-import styled from 'styled-components';
 import { useOnScreen } from '@/hooks/use-on-screen.ts';
 import { useRef } from 'react';
 import styled from 'styled-components';

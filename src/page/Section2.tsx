@@ -1,22 +1,39 @@
 import Spacing from '@/components/Spacing.tsx';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { USER_PROFILE } from '@/constants/useProfile';
 import TechStackIcon from '@/components/techStackIcon';
 import styled from 'styled-components';
 import Rainbow from '@/components/Rainbow.tsx';
-import { useOnScreen } from '@/hooks/use-on-screen.ts';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Section2 = () => {
   const { name, education, techStack, career, field } = USER_PROFILE;
-  const sectionRef = useRef<HTMLDivElement>(null);
-  useOnScreen(sectionRef, 'skillSet', {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1,
-  });
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.rightContent',
+          start: 'top 120%',
+          end: 'top 120%',
+          toggleActions: 'play none none reverse',
+          markers: true,
+        },
+      })
+      .fromTo(
+        '.rightContent > *',
+        { x: 200, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out' }
+      );
+  }, []);
+
   return (
     <Wrapper id="section2">
-      <RightContent>
+      <RightContent className="rightContent">
         <Rainbow text={'About Me'} />
         <Spacing direction="vertical" size={100} />
         <WhiteBar />
@@ -32,10 +49,12 @@ const Section2 = () => {
 };
 
 export default Section2;
+
 const Wrapper = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
+  min-height: 100vh; // Ensure that the Wrapper has minimum height
 `;
 
 const WhiteBar = styled.div`
@@ -53,8 +72,10 @@ const Content = styled.span`
   display: block;
   line-height: 1.5;
 `;
+
 const RightContent = styled.div`
   position: absolute;
-  width: 50%;
+  top: 0; // Ensure that RightContent is properly positioned
   right: 0;
+  width: 50%;
 `;
