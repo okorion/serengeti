@@ -5,12 +5,13 @@ import styled from 'styled-components';
 import Rainbow from '@/components/Rainbow.tsx';
 import { useOnScreen } from '@/hooks/use-on-screen.ts';
 import { useRef, useEffect } from 'react';
+import { sectionName } from '@/constants/sectionName.ts';
 
 const Section2 = () => {
   const { name, education, techStack, career, field } = USER_PROFILE;
   const sectionRef = useRef<HTMLDivElement>(null);
   const opacityRef = useRef<HTMLSpanElement>(null);
-  useOnScreen(sectionRef, 'skillSet', {
+  useOnScreen(sectionRef, sectionName.section2, {
     root: null,
     rootMargin: '0px',
     threshold: 0.4,

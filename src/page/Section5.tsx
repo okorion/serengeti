@@ -3,11 +3,12 @@ import { USER_PROFILE } from '@/constants/useProfile';
 import styled from 'styled-components';
 import { useRef } from 'react';
 import { useOnScreen } from '@/hooks/use-on-screen.ts';
+import { sectionName } from '@/constants/sectionName.ts';
 
 const Section5 = () => {
   const { number, email, githubLink } = USER_PROFILE;
   const sectionRef = useRef<HTMLDivElement>(null);
-  useOnScreen(sectionRef, 'contact', {
+  useOnScreen(sectionRef, sectionName.section5, {
     root: null,
     rootMargin: '0px',
     threshold: 0.1,
