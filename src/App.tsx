@@ -10,8 +10,13 @@ import LoadingPage from '@/components/LoadingPage.tsx';
 import { useEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import scrollStore from '@/store/scrollStore.ts';
+import { USER_PROFILE } from '@/constants/useProfile.ts';
 
 function App() {
+  useEffect(() => {
+    document.title = `${USER_PROFILE.name}의 이력서`;
+  }, []);
+
   useEffect(() => {
     const scrollEl = document.querySelector('#main-container') as HTMLElement;
     if (!scrollEl) {
