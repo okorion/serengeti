@@ -4,12 +4,13 @@ import ScrollSlideText from '@/components/ScrollSlideText';
 import { useOnScreen } from '@/hooks/use-on-screen.ts';
 import { useRef } from 'react';
 import styled from 'styled-components';
+import { sectionName } from '@/constants/sectionName.ts';
 
 const Section1 = () => {
   // Title Page
   const { title, aboutMe } = USER_PROFILE;
   const sectionRef = useRef<HTMLDivElement>(null);
-  useOnScreen(sectionRef, '', {
+  useOnScreen(sectionRef, sectionName.section1, {
     root: null,
     rootMargin: '0px',
     threshold: 0.1,

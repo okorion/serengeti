@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import scrollStore from '@/store/scrollStore.ts';
 import { USER_PROFILE } from '@/constants/useProfile.ts';
+import { navigateToSection } from '@/utils/navigationToSection.ts';
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,8 @@ function App() {
       scrollStore.setScrollDirection(direction);
       lastScrollY = args.scroll.y;
     });
+
+    navigateToSection(locoScroll);
 
     return () => {
       locoScroll.destroy();

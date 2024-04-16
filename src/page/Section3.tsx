@@ -7,13 +7,14 @@ import axios from 'axios';
 import { observer } from 'mobx-react';
 import opacityStore from '@/store/opacityStore';
 import { useOnScreen } from '@/hooks/use-on-screen.ts';
+import { sectionName } from '@/constants/sectionName.ts';
 
 const Section3 = observer(() => {
   const { notionPageId } = USER_PROFILE;
   const [recordMap, setRecordMap] = useState<ExtendedRecordMap | null>(null);
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  useOnScreen(sectionRef, 'notion', {
+  useOnScreen(sectionRef, sectionName.section3, {
     root: null,
     rootMargin: '0px',
     threshold: 0.1,
