@@ -18,10 +18,9 @@ const Section2 = () => {
       .timeline({
         scrollTrigger: {
           trigger: '.rightContent',
-          start: 'top 120%',
-          end: 'top 120%',
+          start: 'top 70%',
+          end: 'top 70%',
           toggleActions: 'play none none reverse',
-          markers: true,
         },
       })
       .fromTo(
