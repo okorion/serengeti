@@ -58,7 +58,6 @@ const Section2 = () => {
           start: 'top 45%',
           end: 'top 45%',
           toggleActions: 'play none none reverse',
-          markers: true,
         },
       })
       .fromTo(
