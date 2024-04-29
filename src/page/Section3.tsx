@@ -1,5 +1,5 @@
 import { USER_PROFILE } from '@/constants/useProfile';
-
+import 'locomotive-scroll/dist/locomotive-scroll.css';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap } from 'notion-types';
 import { useEffect, useRef, useState } from 'react';
@@ -39,19 +39,20 @@ const Section3 = observer(() => {
   }, [notionPageId]);
   return (
     <div style={{ position: 'relative', zIndex: 2, right: 0, height: 4000 }} ref={sectionRef} id="section3">
-      {recordMap && (
-        <div
-          style={{
-            position: 'sticky',
-            top: 0,
-            left: 0,
-            backgroundColor: 'white',
-            opacity: opacityStore.opacity,
-          }}
-        >
-          <NotionRenderer recordMap={recordMap} fullPage={true} />
-        </div>
-      )}
+      <div
+        data-scroll
+        data-scroll-sticky
+        data-scroll-target="#section3"
+        style={{
+          position: 'sticky',
+          top: 0,
+          left: 0,
+          backgroundColor: 'white',
+          opacity: opacityStore.opacity,
+        }}
+      >
+        {recordMap && <NotionRenderer recordMap={recordMap} fullPage={true} />}
+      </div>
     </div>
   );
 });
