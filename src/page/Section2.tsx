@@ -1,4 +1,6 @@
 import Spacing from '@/components/Spacing.tsx';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { USER_PROFILE } from '@/constants/useProfile';
 import TechStackIcon from '@/components/techStackIcon';
 import styled from 'styled-components';
@@ -7,10 +9,13 @@ import { useOnScreen } from '@/hooks/use-on-screen.ts';
 import { useRef, useEffect } from 'react';
 import { sectionName } from '@/constants/sectionName.ts';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Section2 = () => {
   const { name, education, techStack, career, field } = USER_PROFILE;
   const sectionRef = useRef<HTMLDivElement>(null);
   const opacityRef = useRef<HTMLSpanElement>(null);
+
   useOnScreen(sectionRef, sectionName.section2, {
     root: null,
     rootMargin: '0px',
@@ -45,6 +50,23 @@ const Section2 = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.rightContent',
+          start: 'top 45%',
+          end: 'top 45%',
+          toggleActions: 'play none none reverse',
+        },
+      })
+      .fromTo(
+        '.rightContent > *',
+        { x: 200, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out' }
+      );
+  }, []);
+
   return (
     <Wrapper id="section2">
       <OpacityText className="fade-in" ref={opacityRef}>
@@ -59,29 +81,30 @@ const Section2 = () => {
         사랑
       </OpacityText>
       <Spacing size={500} />
-      <RightContent>
-        <div>
-          <Rainbow text={'About Me'} />
-          <Spacing direction="vertical" size={100} />
-          <WhiteBar />
-          <Content ref={sectionRef}>이름 : {name}</Content>
-          <Content>학력 : {education}</Content>
-          <Content>직군 : {field}</Content>
-          <Content>기술 스택: </Content>
-          <TechStackIcon techs={techStack} />
-          <Content>경력 : {career}</Content>
-        </div>
+      <RightContent className="rightContent">
+        <Rainbow text={'About Me'} />
+        <Spacing direction="vertical" size={100} />
+        <WhiteBar />
+        <Content ref={sectionRef}>이름 : {name}</Content>
+        <Content>학력 : {education}</Content>
+        <Content>직군 : {field}</Content>
+        <Content>기술 스택: </Content>
+        <TechStackIcon techs={techStack} />
+        <Content>경력 : {career}</Content>
       </RightContent>
     </Wrapper>
   );
 };
 
 export default Section2;
+
 const Wrapper = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
+  min-height: 100vh;
   justify-content: center;
+  min-height: 100vh; // Ensure that the Wrapper has minimum height
 `;
 
 const WhiteBar = styled.div`
@@ -116,8 +139,7 @@ const OpacityText = styled.span`
 `;
 
 const RightContent = styled.div`
-  padding-left: 40%;
-  display: flex;
+  top: 0;
+  transform: translateX(80%);
   width: 50%;
-  right: 0;
 `;
